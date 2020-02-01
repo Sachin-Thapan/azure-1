@@ -3,39 +3,46 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
 
-    "interfacename": {
-      "type": "string"
-    },
-    
     "location": {
-      "type": "string"
+      "type": "string",
+      "defaultValue": "southcentralus"
     },
 
+    "interfacename": {
+      "type": "string",
+      "defaultValue": "interface201"
+    },
+    
     "subnet_id": {
-      "type": "string"
+      "type": "string",
+"defaultValue": "/subscriptions/f4e750b2-c117-42c8-a0f9-b3de11c961dd/resourceGroups/rg_1117000_net/providers/Microsoft.Network/virtualNetworks/musa1azvnt117000/subnets/sn_10-117-0-128_25"
     },
 
       "newOrExistinglb": {
-      "type": "string"
+      "type": "string",
+"defaultValue": "No"
     },
 
      "newOrExistingplb": {
-      "type": "string"
+      "type": "string",
+"defaultValue": "No"
     },
 
       "Backend_id": {
-      "type": "string"
+      "type": "string",
+"defaultValue": "/subscriptions/f4e750b2-c117-42c8-a0f9-b3de11c961dd/resourceGroups/rg_1117000_prod/providers/Microsoft.Network/loadBalancers/lb_std_1117000_prod_001/backendAddressPools/lb_std_1117000_prod_001-pool"
     },
 
       "PBackend_id": {
-      "type": "string"
+      "type": "string",
+"defaultValue": "/subscriptions/f4e750b2-c117-42c8-a0f9-b3de11c961dd/resourceGroups/rg_1117000_prod/providers/Microsoft.Network/loadBalancers/plb_std_1117000_prod_001/backendAddressPools/plb_std_1117000_prod_001-pool"
     },
 
       "asgId": {
-      "type": "string"
+      "type": "string",
+"defaultValue": "/subscriptions/f4e750b2-c117-42c8-a0f9-b3de11c961dd/resourceGroups/rg_1117000_net/providers/Microsoft.Network/applicationSecurityGroups/WLS_PROD_WEB_ASG"
     }
   
-
   },
   "resources": [
 
@@ -60,10 +67,10 @@
                             "loadBalancerBackendAddressPools": [
                               
                                 {
-                                   "id": "[parameters('Backend_id')]"
+                                   "id": "[if(not(equals(parameters('newOrExistinglb'), 'No')), parameters('Backend_id') , json('[]'))]"
                                                                 },
                                                                 {
-                                    "id": "[parameters('PBackend_id')]"
+                                    "id": "[if(not(equals(parameters('newOrExistinglb'), 'No')), parameters('PBackend_id') , json('[]'))]"
                                                                    }
                             ],
                             "applicationSecurityGroups": [
