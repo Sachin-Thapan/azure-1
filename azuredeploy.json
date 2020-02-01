@@ -60,10 +60,10 @@
                             "loadBalancerBackendAddressPools": [
                               
                                 {
-                                   "id": "[parameters('Backend_id'))]"
+                                   "id": "[parameters('Backend_id')]"
                                                                 },
                                                                 {
-                                    "id": "[parameters('PBackend_id'))]"
+                                    "id": "[parameters('PBackend_id')]"
                                                                    }
                             ],
                             "applicationSecurityGroups": [
