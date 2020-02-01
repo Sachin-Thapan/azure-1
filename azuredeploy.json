@@ -3,22 +3,21 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "location": {
-      "type": "string",
-      "defaultValue": "[resourceGroup().location]",
-      "metadata": {
-        "description": "Location for all resources."
-      }
+      "type": "string"
+    },
+    "asname": {
+      "type": "string"
     }
   },
   "resources": [
     {
       "type": "Microsoft.Compute/availabilitySets",
-      "name": "availabilitySet1",
+      "name": "[parameters('asname')]",
       "apiVersion": "2015-06-15",
       "location": "[parameters('location')]",
       "properties": {
         "platformFaultDomainCount": 3,
-        "platformUpdateDomainCount": "20"
+        "platformUpdateDomainCount": 5
       }
     }
   ]
