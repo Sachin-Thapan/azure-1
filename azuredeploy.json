@@ -60,10 +60,12 @@
                             "loadBalancerBackendAddressPools": [
                               
                                 {
-                                    "id": "[if(equals(parameters('newOrExistinglb'),'No'),json('null'),parameters('Backend_id'))]"
+                                   "id": "[parameters('Backend_id'))]"
+                                   // "id": "[if(equals(parameters('newOrExistinglb'),'No'),json('null'),parameters('Backend_id'))]"
                                 },
                                                                 {
-                                    "id": "[if(equals(parameters('newOrExistingplb'),'No'),json('null'),parameters('PBackend_id'))]"
+                                    "id": "[parameters('PBackend_id'))]"
+                                   // "id": "[if(equals(parameters('newOrExistingplb'),'No'),json('null'),parameters('PBackend_id'))]"
                                 }
                             ],
                             "applicationSecurityGroups": [
